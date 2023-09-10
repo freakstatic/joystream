@@ -932,15 +932,15 @@ pub type CouncilModule = council::Module<Runtime>;
 parameter_types! {
     // referendum parameters
     pub const MaxSaltLength: u64 = 32;
-    pub const VoteStageDuration: BlockNumber = days!(3);
+    pub const VoteStageDuration: BlockNumber = days!(4);
     pub const RevealStageDuration: BlockNumber = days!(3);
     pub const MinimumVotingStake: Balance = dollars!(10);
     pub const MaxWinnerTargetCount: u32 = CouncilSize::get();
 
     // council parameteres
     pub const MinNumberOfExtraCandidates: u32 = 0;
-    pub const AnnouncingPeriodDuration: BlockNumber = days!(9);
-    pub const IdlePeriodDuration: BlockNumber = 1; // 1 block
+    pub const AnnouncingPeriodDuration: BlockNumber = days!(3);
+    pub const IdlePeriodDuration: BlockNumber = days!(18);
     pub const CouncilSize: u32 = 3;
     pub const MinCandidateStake: Balance = dollars!(10_000);
     pub const ElectedMemberRewardPeriod: BlockNumber = days!(1);
@@ -1224,7 +1224,7 @@ impl membership::Config for Runtime {
 
 parameter_types! {
     pub const MaxCategoryDepth: u64 = 6;
-    pub const MaxDirectSubcategoriesInCategory: u64 = 5;
+    pub const MaxDirectSubcategoriesInCategory: u64 = 10    ;
     pub const MaxTotalCategories: u64 = 40;
     pub const MaxModeratorsForCategory: u64 = 10;
 
