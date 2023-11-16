@@ -213,9 +213,62 @@ runtime-benchmarks = [
     "project-token/runtime-benchmarks",
 ]
 
-# Staging and testing configurations
-# configuration suitable for staging networks and playground
+# Configuration suitable for staging networks and playground
 staging-runtime = []
 playground-runtime = []
-# configuration suitable for integration testing
-testing-runtime = []
+# Configuration suitable for automated integration testing only
+testing-runtime = [
+    "fast-block-production"
+]
+
+# Default block production interval is 6s. Enabling this feature will configure chain for 1s interval instead.
+fast-block-production = []
+
+# Configures 1s block interval for the chain, but changes behaviour of `minutes!`, `hours!`, `days!` util macros
+# to compute periods (in blocks) based on 6s block interval.
+# This configuration is meant for QA (manual testing) of production runtime configuration.
+# that has long time periods for things like council elections, proposals voting periods etc.
+# Enabling warp-time with playground-runtime, staging-runtime or testing-runtime will most likely result in time periods to be too
+# short (in real time sense) and beyond practicality.
+warp-time = [
+    "fast-block-production"
+]
+
+try-runtime = [
+    "frame-try-runtime",
+    "frame-executive/try-runtime",
+    "frame-system/try-runtime",
+    "frame-support/try-runtime",
+    "pallet-authority-discovery/try-runtime",
+    "pallet-authorship/try-runtime",
+    "pallet-babe/try-runtime",
+    "pallet-bags-list/try-runtime",
+    "pallet-balances/try-runtime",
+    "pallet-election-provider-multi-phase/try-runtime",
+    "pallet-grandpa/try-runtime",
+    "pallet-im-online/try-runtime",
+    "pallet-multisig/try-runtime",
+    "pallet-offences/try-runtime",
+    "pallet-insecure-randomness-collective-flip/try-runtime",
+    "pallet-session/try-runtime",
+    "pallet-staking/try-runtime",
+    "pallet-timestamp/try-runtime",
+    "pallet-transaction-payment/try-runtime",
+    "pallet-vesting/try-runtime",
+    "substrate-utility/try-runtime",
+    # joystream
+    'forum/try-runtime',
+    'membership/try-runtime',
+    'council/try-runtime',
+    'referendum/try-runtime',
+    'working-group/try-runtime',
+    'storage/try-runtime',
+    'proposals-engine/try-runtime',
+    'proposals-discussion/try-runtime',
+    'proposals-codex/try-runtime',
+    'pallet-constitution/try-runtime',
+    'bounty/try-runtime',
+    'joystream-utility/try-runtime',
+    'content/try-runtime',
+    'project-token/try-runtime',
+]

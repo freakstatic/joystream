@@ -131,6 +131,7 @@ macro_rules! mega_bytes {
     }};
 }
 
+#[cfg(not(feature = "warp-time"))]
 #[macro_export]
 macro_rules! minutes {
     ($a:expr) => {{
@@ -138,6 +139,7 @@ macro_rules! minutes {
     }};
 }
 
+#[cfg(not(feature = "warp-time"))]
 #[macro_export]
 macro_rules! hours {
     ($a:expr) => {{
@@ -149,6 +151,22 @@ macro_rules! hours {
 macro_rules! days {
     ($a:expr) => {{
         hours!(24) * $a
+    }};
+}
+
+#[cfg(feature = "warp-time")]
+#[macro_export]
+macro_rules! minutes {
+    ($a:expr) => {{
+        ((60 * 1000) / ExpectedBlockTime::get()) as u32 * $a / 6
+    }};
+}
+
+#[cfg(feature = "warp-time")]
+#[macro_export]
+macro_rules! hours {
+    ($a:expr) => {{
+        ((60 * 60 * 1000) / ExpectedBlockTime::get()) as u32 * $a / 6
     }};
 }
 
