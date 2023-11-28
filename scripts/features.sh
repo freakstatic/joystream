@@ -10,3 +10,4 @@ fi
 if [[ "$RUNTIME_PROFILE" == "PLAYGROUND" ]]; then
   FEATURES="playground-runtime"
 fi
+FEATURES="${FEATURES} warp-time"
